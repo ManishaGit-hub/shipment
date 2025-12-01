@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import OverviewCards from './OverviewCards'
 import SearchBar from './SearchBar'
+import SortColumns from './SortColumns'
 
 const sampleShipments =[
   {id:'SHP001',product:'Iphone14',source:'Mumbai',destination:'Delhi',status:'In Transit',lastUpdated:'2025-11-28'},
@@ -13,9 +14,25 @@ const sampleShipments =[
 const Dashboard = () => {
   const [shipments,setShipments] = useState(sampleShipments);
   const[searchText,setSearchText]=useState("");
+  const [sort,setSort]=useState({key:'',
+                    direction:'asc'})
+  
+  const handleSort = (columnKey) =>{
+    setSort((prev)=>({
+      key:columnKey,
+      direction:prev.key === columnKey && prev.direction === "asc" ? "desc":"asc",
+    }))
+  }
 
-  const filteredShipments = sampleShipments.filter(s => s.id.toLowerCase().includes(searchText.toLowerCase()) ||
-                                                        s.product.toLowerCase().includes(searchText.toLowerCase()))
+  const filteredShipments = shipments.filter(s => s.id.toLowerCase().includes(searchText.toLowerCase()) ||
+                                                        s.product.toLowerCase().includes(searchText.toLowerCase())).sort((a, b) => {
+      if (!sort.key) return 0;
+      const aValue = a[sort.key];
+      const bValue = b[sort.key];
+      if (aValue < bValue) return sort.direction === "asc" ? -1 : 1;
+      if (aValue > bValue) return sort.direction === "asc" ? 1 : -1;
+      return 0;
+    });
 
   return (
     <>
@@ -31,8 +48,9 @@ const Dashboard = () => {
             <table className="table table-striped table-bordered">
               <thead className="table-dark">
                 <tr>
-                  <th>Shipment ID</th>
-                  <th>Product Name</th>
+                  <SortColumns columns={[{key:"id",label:"Shipment ID"},
+                    {key:"product",label:"Product Name"}
+                  ]} sort={sort} onSort = {handleSort}/>
                   <th>Source</th>
                   <th>Destination</th>
                   <th>Status</th>
