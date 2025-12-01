@@ -20,9 +20,9 @@ const Dashboard = () => {
         <OverviewCards shipments={shipments}/>
       <div className="container mt-4">
         <h4 className="mb-3">Shipments</h4>
-          <div>
-            <table>
-              <thead>
+          <div className="table-responsive">
+            <table className="table table-striped table-bordered">
+              <thead className="table-dark">
                 <tr>
                   <th>Shipment ID</th>
                   <th>Product Name</th>
@@ -41,7 +41,8 @@ const Dashboard = () => {
                       <td>{s.source}</td>
                       <td>{s.destination}</td>
                       <td>
-                        <span>{s.status}</span>
+                        <span className={s.status === 'Delivered'?'badge bg-success':s.status === 'In Transit'?'badge bg-info text-dark':'badge bg-danger'}>
+                          {s.status}</span>
                       </td>
                       <td>{s.lastUpdated}</td>
                     </tr>
