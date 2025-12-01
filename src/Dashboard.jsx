@@ -18,7 +18,41 @@ const Dashboard = () => {
         <h1 className="mb-3">Dashboard</h1>
       </div>
         <OverviewCards shipments={shipments}/>
-        
+      <div className="container mt-4">
+        <h4 className="mb-3">Shipments</h4>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Shipment ID</th>
+                  <th>Product Name</th>
+                  <th>Source</th>
+                  <th>Destination</th>
+                  <th>Status</th>
+                  <th>Last Updated</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sampleShipments.map((s)=>{
+                  return (
+                    <tr key={s.id}>
+                      <td>{s.id}</td>
+                      <td>{s.product}</td>
+                      <td>{s.source}</td>
+                      <td>{s.destination}</td>
+                      <td>
+                        <span>{s.status}</span>
+                      </td>
+                      <td>{s.lastUpdated}</td>
+                    </tr>
+                  
+                  )
+                })}
+                
+              </tbody>
+            </table>
+          </div>
+      </div>
     </div>
     </>
   )
