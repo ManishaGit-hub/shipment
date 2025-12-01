@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import OverviewCards from './OverviewCards'
+import SearchBar from './SearchBar'
 
 const sampleShipments =[
   {id:'SHP001',product:'Iphone14',source:'Mumbai',destination:'Delhi',status:'In Transit',lastUpdated:'2025-11-28'},
@@ -11,6 +12,11 @@ const sampleShipments =[
 
 const Dashboard = () => {
   const [shipments,setShipments] = useState(sampleShipments);
+  const[searchText,setSearchText]=useState("");
+
+  const filteredShipments = sampleShipments.filter(s => s.id.toLowerCase().includes(searchText.toLowerCase()) ||
+                                                        s.product.toLowerCase().includes(searchText.toLowerCase()))
+
   return (
     <>
     <div>
@@ -21,6 +27,7 @@ const Dashboard = () => {
       <div className="container mt-4">
         <h4 className="mb-3">Shipments</h4>
           <div className="table-responsive">
+            <SearchBar value={searchText} onChange={setSearchText}/>
             <table className="table table-striped table-bordered">
               <thead className="table-dark">
                 <tr>
@@ -33,7 +40,7 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {sampleShipments.map((s)=>{
+                {filteredShipments.map((s)=>{
                   return (
                     <tr key={s.id}>
                       <td>{s.id}</td>
