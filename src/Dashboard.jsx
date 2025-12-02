@@ -3,6 +3,7 @@ import OverviewCards from './OverviewCards'
 import SearchBar from './SearchBar'
 import SortColumns from './SortColumns'
 import Pagination from './Pagination'
+import { useNavigate } from 'react-router-dom'
 
 const sampleShipments =[
   {id:'SHP001',product:'Iphone14',source:'Mumbai',destination:'Delhi',status:'In Transit',lastUpdated:'2025-11-28'},
@@ -20,6 +21,7 @@ const sampleShipments =[
 ]
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [shipments,setShipments] = useState(sampleShipments);
   const[searchText,setSearchText]=useState("");
   const [sort,setSort]=useState({key:'',
@@ -79,7 +81,7 @@ const Dashboard = () => {
               <tbody>
                 {ShipmentInEachPage.map((s)=>{
                   return (
-                    <tr key={s.id}>
+                    <tr key={s.id} style={{cursor:"pointer"}} onClick={()=>navigate(`/shipment/${s.id}`)}>
                       <td>{s.id}</td>
                       <td>{s.product}</td>
                       <td>{s.source}</td>
