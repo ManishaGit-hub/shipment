@@ -14,7 +14,7 @@ const SortColumns = ({columns,sort,onSort}) => {
   return (
     <>
         {columns.map((col) => (
-            <th key={col.key} onClick={()=>handleClick(col.key)} style={{cursor:"pointer",whiteSpace:"noWrap"}}>{col.label} {getArrow(col.key)}</th>
+            <th key={col.key} onClick={()=>handleClick(col.key)} style={{cursor:"pointer",whiteSpace:"nowrap"}}>{col.label} {getArrow(col.key)}</th>
         ))}
     </>
   )

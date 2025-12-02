@@ -2,13 +2,21 @@ import React,{useState} from 'react'
 import OverviewCards from './OverviewCards'
 import SearchBar from './SearchBar'
 import SortColumns from './SortColumns'
+import Pagination from './Pagination'
 
 const sampleShipments =[
   {id:'SHP001',product:'Iphone14',source:'Mumbai',destination:'Delhi',status:'In Transit',lastUpdated:'2025-11-28'},
   {id:'SHP002',product:'Iphone15',source:'Bangalore',destination:'Gujrat',status:'Delivered',lastUpdated:'2025-11-27'},
-  {id:'SHP003',product:'Iphone16',source:'Rajasthan',destination:'Punjab',status:'Delayed',lastUpdated:'2025-11-29'},
+  {id:'SHP003',product:'Iphone15',source:'Rajasthan',destination:'Punjab',status:'Delayed',lastUpdated:'2025-11-29'},
   {id:'SHP004',product:'Iphone17',source:'Assam',destination:'Kerala',status:'In Transit',lastUpdated:'2025-11-30'},
-  
+  {id:'SHP005',product:'Iphone18',source:'Mumbai',destination:'Delhi',status:'In Transit',lastUpdated:'2025-12-01'},
+  {id:'SHP006',product:'Iphone15',source:'Bangalore',destination:'Gujrat',status:'Delivered',lastUpdated:'2025-12-02'},
+  {id:'SHP007',product:'phone17',source:'Rajasthan',destination:'Punjab',status:'Delayed',lastUpdated:'2025-11-28'},
+  {id:'SHP008',product:'Vivo',source:'Assam',destination:'Kerala',status:'In Transit',lastUpdated:'2025-11-30'},
+  {id:'SHP009',product:'Samsung',source:'Mumbai',destination:'Delhi',status:'In Transit',lastUpdated:'2025-10-28'},
+  {id:'SHP010',product:'Readmi',source:'Bangalore',destination:'Gujrat',status:'Delivered',lastUpdated:'2025-10-27'},
+  {id:'SHP011',product:'Nothing',source:'Rajasthan',destination:'Punjab',status:'Delayed',lastUpdated:'2025-09-29'},
+  {id:'SHP012',product:'Nokia',source:'Assam',destination:'Kerala',status:'In Transit',lastUpdated:'2025-09-30'},
 ]
 
 const Dashboard = () => {
@@ -16,6 +24,8 @@ const Dashboard = () => {
   const[searchText,setSearchText]=useState("");
   const [sort,setSort]=useState({key:'',
                     direction:'asc'})
+  const [currentPage,setCurrentPage] =useState(1);
+  const itemsPerPage = 4;
   
   const handleSort = (columnKey) =>{
     setSort((prev)=>({
@@ -33,6 +43,15 @@ const Dashboard = () => {
       if (aValue > bValue) return sort.direction === "asc" ? 1 : -1;
       return 0;
     });
+
+    const indexOfLast = currentPage * itemsPerPage;
+    const indexOfFirst = indexOfLast - itemsPerPage;
+    const ShipmentInEachPage = filteredShipments.slice(indexOfFirst,indexOfLast)
+
+    const totalPages = Math.ceil(filteredShipments.length/itemsPerPage);
+    const handlePageChange = (page) =>{
+        setCurrentPage(page);
+    }
 
   return (
     <>
@@ -58,7 +77,7 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredShipments.map((s)=>{
+                {ShipmentInEachPage.map((s)=>{
                   return (
                     <tr key={s.id}>
                       <td>{s.id}</td>
@@ -76,6 +95,7 @@ const Dashboard = () => {
                 })}
                 
               </tbody>
+              <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange}/>
             </table>
           </div>
       </div>
