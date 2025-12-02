@@ -30,6 +30,11 @@ const ShipmentDetailsPage = () => {
     if(error) return <p className="text-center text-danger">{error}</p>
     if(!item) return <h3 className="text-center mt-5">Shipment not found</h3>
 
+            const shippingStages =["Ordered", "Packed", "Dispatched", "In Transit", "Delivered"];
+            const currentStageIndex = shippingStages.indexOf(item.status);
+            const filteredLogs = item.logs.filter(log =>
+            shippingStages.indexOf(log.stage)<=currentStageIndex).slice(-5);
+
   return (
     <>
         <div className="container mt-4">
@@ -60,12 +65,16 @@ const ShipmentDetailsPage = () => {
                     </div>
                 ))}
             </div>
-            {/*Log Events*/}
+             {/*Log Events*/}
             <h4 className="mt-3">Recent Updates</h4>
             <ul className="list-group mb-4">
-                {item.logs.slice(-5).map((log,i)=>(
-                    <li key={i} className="list-group-item">{log.date}----: <strong>{log.message}</strong></li>
-                ))}
+                {filteredLogs.length > 0?(
+                    filteredLogs.map((log,i)=>(
+                        <li key={i} className="list-group-item">{log.date}---: <strong>{log.message}</strong></li>
+                    ))
+                ):(
+                    <li className="list-group-item text-center text-muted">No updates available yet!</li>
+                )}
             </ul>
             {/*Estimated Delivery*/}
             <div className="alert alert-info text-center fw-bold">

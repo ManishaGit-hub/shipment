@@ -1,16 +1,113 @@
-# React + Vite
+Shipment Tracking Dashboard
+---------------------------
+A modern and responsive shipment tracking dashboard built with React, featuring authentication, dashboard analytics, shipment table with search/sort/pagination, and a detailed shipment page with timeline and logs.
+All shipment data is powered using a Mock API (JSON Server)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Demo & Repository
+----------------------
+🔹 Live Demo (Vercel): shipment-ecru.vercel.app
+🔹 GitHub Repository: https://github.com/ManishaGit-hub/shipment
 
-Currently, two official plugins are available:
+Features Overview
+-----------------
+| Requirement                           | Status      |
+| ------------------------------------- | ----------- |
+| Login Page (Form Handling + Redirect) | ✅ Completed |
+| Dashboard with Shipment Table         | ✅ Completed |
+| Search by Shipment ID / Product       | ✅ Completed |
+| Sorting (Shipment ID & Product)       | ✅ Completed |
+| Pagination                            | ✅ Completed |
+| Overview Cards (Analytics)            | ✅ Completed |
+| Shipment Details Page with Timeline   | ✅ Completed |
+| Last 5 Logs                           | ✅ Completed |
+| Status Badge with Colors              | ✅ Completed |
+| Mock API Integration                  | ✅ Completed |
+| Loading + Error Handling              | ✅ Completed |
+| Responsive UI                         | ✅ Completed |
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+Tech Stack
+----------
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Category                              |              Tech Used           |
+| ------------------------------------- | ---------------------------------|
+| Frontend Framework                    | React(Vite)                      |
+| Styling                               | Bootstrap+Custom CSS(CSS Modules)|
+| Routing                               | React Router                     |
+| Mock API                              | JSON Server                      |
+| HTTP Client                           | Axios                            |
+| Deployment                            | Vercel                           |
 
-## Expanding the ESLint configuration
+Folder Structure
+----------------
+ecommercesite/
+├── backend/
+│   └── db.json                     # Mock API (JSON Server)
+├── public/
+├── src/
+│   ├── OverviewCards.jsx
+│   ├── SearchBar.jsx
+│   ├── SortColumns.jsx
+│   ├── Pagination.jsx
+│   ├── LoginPage.jsx
+│   ├── Dashboard.jsx
+│   ├── ShipmentDetailsPage.jsx
+│   ├── Login.module.css
+│   ├── ShipmentDetailsPage.module.css
+│   ├── App.jsx
+│   ├── FormValidation.js
+│   ├── main.jsx
+├── .gitignore
+├── package.json
+├── vite.config.js
+└── README.md
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Running the Project Locally
+---------------------------
+step 1: Clone the Repository
+
+git clone <your_repo_link>
+cd <project_folder>
+
+step 2: Install Dependencies
+
+npm install
+
+step 3: Start Mock API (JSON Server)
+
+npx json-server --watch db.json --port 5001
+
+step 4: Start React App
+
+npm run dev
+
+Key UI/UX Highlights
+--------------------
+Fully responsive layout using Bootstrap and custom CSS
+Smooth dashboard experience with reusable components
+Professional shipment timeline using CSS Modules
+Clean state management and API fetching
+Loading & error states for API robustness
+
+Test Scenarios Covered
+----------------------
+
+| Scenario                       |            Behavior                  |
+| ----------------------------------------------------------------------|
+| API                            | added loading state                  |
+| API Failure                    | Error message displayed              |
+| Missing Shipment ID            |"Shipment not found" message          |
+| Shipment delivered             | Full timeline shown                  |
+| Shipment delayed / intransit   | Future logs hidden                   |
+| large dataset                  | Smooth pagination & sorting & filter |
+
+Screenshots
+-----------
+
+
+Final Note
+----------
+-> All assignment requirements (Parts 1–5) are fully implemented.
+-> Hosted demo + clean UI + professional code architecture included.
+
+
