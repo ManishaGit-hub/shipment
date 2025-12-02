@@ -1,12 +1,12 @@
-Shipment Tracking Dashboard
----------------------------
+Ecommercesite (Shipment Tracking Dashboard)
+------------------------------------------
 A modern and responsive shipment tracking dashboard built with React, featuring authentication, dashboard analytics, shipment table with search/sort/pagination, and a detailed shipment page with timeline and logs.
 All shipment data is powered using a Mock API (JSON Server)
 
 Live Demo & Repository
 ----------------------
-🔹 Live Demo (Vercel): shipment-ecru.vercel.app
-🔹 GitHub Repository: https://github.com/ManishaGit-hub/shipment
+🔹 [Live Demo (Vercel)](shipment-ecru.vercel.app)
+🔹 [GitHub Repository] (https://github.com/ManishaGit-hub/shipment)
 
 Features Overview
 -----------------
@@ -44,6 +44,10 @@ ecommercesite/
 ├── backend/
 │   └── db.json                     # Mock API (JSON Server)
 ├── public/
+│   ├── Dashboard.png
+│   ├── DetailsPage.png
+│   ├── DetailsPage1.png
+│   ├── Login.png
 ├── src/
 │   ├── OverviewCards.jsx
 │   ├── SearchBar.jsx
@@ -64,20 +68,20 @@ ecommercesite/
 
 Running the Project Locally
 ---------------------------
-step 1: Clone the Repository
+**Step 1:** Clone the Repository
 
-git clone <your_repo_link>
-cd <project_folder>
+git clone [my repo link](https://github.com/ManishaGit-hub/shipment.git)
+cd shipment
 
-step 2: Install Dependencies
+**Step 2:** Install Dependencies
 
 npm install
 
-step 3: Start Mock API (JSON Server)
+**Step 3:** Start Mock API (JSON Server)
 
 npx json-server --watch db.json --port 5001
 
-step 4: Start React App
+**Step 4:** Start React App
 
 npm run dev
 
@@ -103,6 +107,11 @@ Test Scenarios Covered
 
 Screenshots
 -----------
+![Shipment Details](public/Login.png)
+![Dashboard Screenshot](public/Dashboard.png)
+![Shipment Details](public/DetailsPage.png)
+![Shipment Details](public/DetailsPage1.png)
+
 
 
 Final Note
