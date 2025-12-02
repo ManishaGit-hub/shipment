@@ -40,6 +40,7 @@ Tech Stack
 
 Folder Structure
 ----------------
+```bash
 ecommercesite/
 ├── backend/
 │   └── db.json                     # Mock API (JSON Server)
@@ -65,25 +66,33 @@ ecommercesite/
 ├── package.json
 ├── vite.config.js
 └── README.md
+```
 
 Running the Project Locally
 ---------------------------
 **Step 1:** Clone the Repository
 
+```bash
 git clone [my repo link](https://github.com/ManishaGit-hub/shipment.git)
 cd shipment
+```
 
 **Step 2:** Install Dependencies
-
+```bash
 npm install
+```
 
 **Step 3:** Start Mock API (JSON Server)
 
+```bash
 npx json-server --watch db.json --port 5001
+```
 
 **Step 4:** Start React App
 
+```bash
 npm run dev
+```
 
 Key UI/UX Highlights
 --------------------
