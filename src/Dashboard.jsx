@@ -1,19 +1,37 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import OverviewCards from './OverviewCards'
 import SearchBar from './SearchBar'
 import SortColumns from './SortColumns'
 import Pagination from './Pagination'
 import { useNavigate } from 'react-router-dom'
-import {shipmentSampleItems} from './shipmentSampleItems'
+import axios from 'axios'
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [shipments,setShipments] = useState(shipmentSampleItems);
+  const [shipments,setShipments] = useState([]);
+  const [loading,setLoading]=useState(true);
+  const [error,setError]=useState("");
   const[searchText,setSearchText]=useState("");
   const [sort,setSort]=useState({key:'',
                     direction:'asc'})
   const [currentPage,setCurrentPage] =useState(1);
   const itemsPerPage = 4;
+
+  //fetch data from API
+  const getShipments = async () => {
+    try {
+      const { data } = await axios.get('http://localhost:5001/shipmentSampleItems'); 
+      setShipments(data);
+      setLoading(false);
+    } catch (error) {
+      setError("Failed to fetch shipments")
+      setLoading(false)
+    }
+  };
+
+  useEffect(() => {
+    getShipments();
+  }, []);
   
   const handleSort = (columnKey) =>{
     setSort((prev)=>({
@@ -40,6 +58,9 @@ const Dashboard = () => {
     const handlePageChange = (page) =>{
         setCurrentPage(page);
     }
+
+    if(loading) return <p className="text-center mt-4">Loading shipments...</p>
+    if(error) return <p className="text-center text-danger">{error}</p>
 
   return (
     <>

@@ -1,14 +1,34 @@
-import React from 'react'
-import { useParams,useNavigate } from 'react-router-dom'
-import { shipmentSampleItems } from './shipmentSampleItems'
-import Style from './ShipmentDetailsPage.module.css'
+import React,{useEffect,useState} from 'react';
+import { useParams,useNavigate } from 'react-router-dom';
+import Style from './ShipmentDetailsPage.module.css';
+import axios from 'axios';
 
 const ShipmentDetailsPage = () => {
     const {id} = useParams();
     const navigate = useNavigate();
+    const [item,setItem]=useState(null);
+    const [loading,setLoading]=useState(true);
+    const [error,setError]=useState("");
 
-    const item = shipmentSampleItems.find(s=>s.id === id);
-    if(!item) return <h3 className="text-center mt-5">Shipment Not Found</h3>
+    //fetch shipment by ID from server
+    useEffect(()=>{
+        const fetchShipment = async()=>{
+            try{
+                const {data}= await axios.get(`http://localhost:5001/shipmentSampleItems/${id}`);
+                setItem(data);
+                setLoading(false)
+            }
+            catch(err){
+                setError("Failed to fetch shipment details");
+                setLoading(false)
+            }
+        }
+        fetchShipment();
+    },[id]);
+
+    if(loading) return <p className="text-center mt-4">Loading shipment...</p>
+    if(error) return <p className="text-center text-danger">{error}</p>
+    if(!item) return <h3 className="text-center mt-5">Shipment not found</h3>
 
   return (
     <>
