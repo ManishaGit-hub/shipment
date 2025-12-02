@@ -1,12 +1,12 @@
 import React from 'react'
 import { useParams,useNavigate } from 'react-router-dom'
-import { sampleShipments } from './SampleShipments';
+import { shipmentSampleItems } from './shipmentSampleItems'
 
 const ShipmentDetailsPage = () => {
     const {id} = useParams();
     const navigate = useNavigate();
 
-    const item = sampleShipments.find(s=>s.id === id);
+    const item = shipmentSampleItems.find(s=>s.id === id);
     if(!item) return <h3 className="text-center mt-5">Shipment Not Found</h3>
 
   return (

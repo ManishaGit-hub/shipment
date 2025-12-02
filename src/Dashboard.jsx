@@ -4,11 +4,11 @@ import SearchBar from './SearchBar'
 import SortColumns from './SortColumns'
 import Pagination from './Pagination'
 import { useNavigate } from 'react-router-dom'
-import {sampleShipments} from './sampleShipments'
+import {shipmentSampleItems} from './shipmentSampleItems'
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [shipments,setShipments] = useState(sampleShipments);
+  const [shipments,setShipments] = useState(shipmentSampleItems);
   const[searchText,setSearchText]=useState("");
   const [sort,setSort]=useState({key:'',
                     direction:'asc'})

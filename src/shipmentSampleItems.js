@@ -1,4 +1,4 @@
-export const sampleShipments =[
+export const shipmentSampleItems =[
   {id:'SHP001',product:'Iphone14',source:'Mumbai',destination:'Delhi',status:'In Transit',lastUpdated:'2025-11-28'},
   {id:'SHP002',product:'Iphone15',source:'Bangalore',destination:'Gujrat',status:'Delivered',lastUpdated:'2025-11-27'},
   {id:'SHP003',product:'Iphone15',source:'Rajasthan',destination:'Punjab',status:'Delayed',lastUpdated:'2025-11-29'},
