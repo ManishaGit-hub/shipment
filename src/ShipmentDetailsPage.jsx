@@ -14,8 +14,9 @@ const ShipmentDetailsPage = () => {
     useEffect(()=>{
         const fetchShipment = async()=>{
             try{
-                const {data}= await axios.get(`http://localhost:5001/shipmentSampleItems/${id}`);
-                setItem(data);
+                const {data}= await axios.get(`/shipments.json`); //fetching whole file
+                const shipment=data.find(item => item.id === id);
+                setItem(shipment);
                 setLoading(false)
             }
             catch(err){

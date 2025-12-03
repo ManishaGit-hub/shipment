@@ -20,7 +20,7 @@ const Dashboard = () => {
   //fetch data from API
   const getShipments = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5001/shipmentSampleItems'); 
+      const { data } = await axios.get('/shipments.json'); 
       setShipments(data);
       setLoading(false);
     } catch (error) {
