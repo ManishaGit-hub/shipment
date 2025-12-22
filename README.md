@@ -5,7 +5,7 @@ All shipment data is powered using a Mock API (JSON Server)
 
 Live Demo & Repository
 ----------------------
-🔹 [Live Demo (Vercel)](shipment-ecru.vercel.app)
+🔹 [Live Demo (Vercel)](https://shipment-ecru.vercel.app)
 🔹 [GitHub Repository] (https://github.com/ManishaGit-hub/shipment)
 
 Features Overview
